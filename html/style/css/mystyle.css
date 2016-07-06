@@ -4,37 +4,41 @@
 	padding: 0 auto;
 	width: 100%;
 	height: 100%;
+	background-image: url("../img/blackground3.jpg");
+	background-size: cover;
+	background-repeat:no-repeat;
 }
 
 #div_loginbar{
+	text-align:right;
 	height:35px;
-	background-color: blue;
+	background-color:#747474;
 	padding-top:5px;
 }
 
 #header{
+	text-align:center;
 	height:105px;
-	background-color: aqua;	
+	color : #BC602B;
+	background-color: #3E3E3E;	
 }
 
 #footer{
 	height:100px;
-	background-color: aqua;	
+	background-color:#B4B4B4;	
 }
 
 .content_wrap{
 	height: 900px;
 	margin: 0 auto;
-	background-image: url("../img/background2.jpg");
-	background-size: cover;
-	background-repeat:no-repeat;
+
 }
 
 #menu{
 	height: 100%;
 	width: 8%;
 	float: left;
-	background-color: green;
+	background-color: ;
 	margin: 5px 5px 5px 5px;
 	margin-left: 15%;
 }
@@ -43,23 +47,28 @@
 	height: 100%;
 	width: 60%;
 	float:left;
-	background-color: skyblue;
+	background-color: #B4B4B4;
 	margin: 5px  auto;
 	margin-right: 5%;
 	
 }
 
 h1{
-	align-text: center;	
+	text-align:center;
+	color : #C6C6C6;	
 }
 h4{
-	align-text: center;
+	color : #C6C6C6;
 }
 
 #h1_header{
+
+	text-align:center;
 	display: inline-block;
 }
 #h4_header{
+
+	
 	display: inline-block;
 }
 
