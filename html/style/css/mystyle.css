@@ -2,6 +2,8 @@
 .wrap{
 	margin: 0 auto;
 	padding: 0 auto;
+	width: 100%;
+	height: 100%;
 }
 
 #div_loginbar{
@@ -21,26 +23,28 @@
 }
 
 .content_wrap{
-	height: 800px;
-	margin: 0px 0px 10px 0px;
+	height: 900px;
+	margin: 0 auto;
 	background-image: url("../img/background2.jpg");
+	background-size: cover;
+	background-repeat:no-repeat;
 }
 
 #menu{
 	height: 100%;
-	width: 10%;
+	width: 8%;
 	float: left;
 	background-color: green;
 	margin: 5px 5px 5px 5px;
-	margin-left: 5%;
+	margin-left: 15%;
 }
 
 #content{
 	height: 100%;
-	width: 70%;
+	width: 60%;
 	float:left;
 	background-color: skyblue;
-	margin: 5px 5px 5px 0px;
+	margin: 5px  auto;
 	margin-right: 5%;
 	
 }

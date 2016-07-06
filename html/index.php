@@ -3,7 +3,7 @@
 <html>
 
 <head>
-	<title>Hello, Sturec!</title>
+	<title>Hello, Bookies!</title>
 	<link rel="stylesheet" type="text/css" href="/style/css/mystyle.css">
 
 </head>
