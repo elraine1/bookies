@@ -23,6 +23,7 @@
 .content_wrap{
 	height: 800px;
 	margin: 0px 0px 10px 0px;
+	background-image: url("../img/background2.jpg");
 }
 
 #menu{
