@@ -42,6 +42,7 @@ function try_to_login($username, $password) {
 		$_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
 		$_SESSION['username'] = $username;
 		$_SESSION['password'] = $password;
+		$_SESSION['name'] = get_name($username); 	// *현재는 이름만 가져옴(추후 수정 가능성 있음.)
 		$_SESSION['login_status'] = true;
 		return true;
 	} else {
@@ -50,23 +51,42 @@ function try_to_login($username, $password) {
 }
 
 function check_user_account($username, $password) {
-    $username = $_POST['username'];
-    $password = $_POST['password']; 
 	$conn = get_mysql_conn();
-	$stmt = mysqli_prepare($conn, "SELECT hash FROM user_account WHERE username = ?");
+	$stmt = mysqli_prepare($conn, "SELECT password_hash FROM user_account WHERE username = ?");
 	mysqli_stmt_bind_param($stmt, "s", $username);
 	mysqli_stmt_execute($stmt);
 	$result = mysqli_stmt_get_result($stmt);
-	if (mysqli_num_rows($result) === 0) { // 등록되지 않은 아이디
+	if (mysqli_num_rows($result) === 0) { // 등록되지 않은 아이디	
+		mysqli_free_result($result);
+		mysqli_close($conn);	
 		header('Location: error.php?error_code=1');
 	} else {
 		$row = mysqli_fetch_assoc($result);
-		$hash = $row["hash"];
+		$hash = $row["hash"];		
+		mysqli_free_result($result);
+		mysqli_close($conn);	
+		
 		return password_verify($password, $hash);
 	}
+}
+
+function get_name($username) {
+	$conn = get_mysql_conn();
+	$stmt = mysqli_prepare($conn, "SELECT name FROM user_account WHERE username = ?");
+	mysqli_stmt_bind_param($stmt, "s", $username);
+	mysqli_stmt_execute($stmt);
+	
+	$result = mysqli_stmt_get_result($stmt);
+	$row = mysqli_fetch_assoc($result);
+	$name = $row["hash"];
+	
 	mysqli_free_result($result);
 	mysqli_close($conn);	
+	
+	return $name;
 }
+
+
 
 // start_session 호출된 후에 사용되어야 한다
 function check_login() {

@@ -13,8 +13,10 @@ if (isset($_POST['username'], $_POST['password'])) {
     $password = $_POST['password']; 
 	echo "login.php";
 	
+	$INDEX_PATH = $_SERVER['DOCUMENT_ROOT'] . "/index.php";
+	
     if (try_to_login($username, $password) == true) {
-        header('Location: protected_page.php');
+        header(sprintf("Location: %s", $INDEX_PATH));
     } else {
 		// 이멜주소 또는 비번이 등록되지 않았거나 틀림
         header('Location: error.php?error_code=1');
