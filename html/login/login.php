@@ -11,8 +11,6 @@ start_session();
 if (isset($_POST['username'], $_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password']; 
-	echo "login.php<br>";
-	
     if (try_to_login($username, $password) == true) {
         header(sprintf("Location: %s", $_SESSION['request_uri']));
     } else {

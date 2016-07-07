@@ -21,13 +21,11 @@ if (isset($_POST['username'], $_POST['password'])) {
 	if (mysqli_num_rows($result) != 0) { // 이미 등록된 아이디
 		header('Location: error.php?error_code=4');
 	} else { 
-		
-		$stmt = mysqli_prepare($conn, "INSERT INTO member(username,password_hash,name,age,address,email,phone,gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-		
 		$password_hash =  password_hash($password, PASSWORD_DEFAULT);
+		$stmt = mysqli_prepare($conn, "INSERT INTO member(username,password_hash,name,age,address,email,phone,gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 		mysqli_stmt_bind_param($stmt, "ssssssss", $username,$password_hash,$name,$age,$address,$email,$phone,$gender);
 		mysqli_stmt_execute($stmt);
-		header('Location: /../index.php');
+		header('Location: ../index.php');
 	}
 	mysqli_free_result($result);
 	mysqli_close($conn);
