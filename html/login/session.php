@@ -1,5 +1,6 @@
 <?php
-
+$mylib_path = $_SERVER['DOCUMENT_ROOT'] . '/../includes/mylib_bookies.php';
+require_once($mylib_path);
 
 
 // 하나의 페이지에서 한 번만 호출되어야 한다.
@@ -35,11 +36,11 @@ function destroy_session() {
 }
 
  // start_session 호출된 후에 사용되어야 한다
-function try_to_login($id, $password) {
-	if (check_user_account($id, $password)) {
+function try_to_login($username, $password) {
+	if (check_user_account($username, $password)) {
 		$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
 		$_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
-		$_SESSION['id'] = $id;
+		$_SESSION['username'] = $username;
 		$_SESSION['password'] = $password;
 		$_SESSION['login_status'] = true;
 		return true;
@@ -48,12 +49,12 @@ function try_to_login($id, $password) {
 	}
 }
 
-function check_user_account($id, $password) {
-    $id = $_POST['id'];
+function check_user_account($username, $password) {
+    $username = $_POST['username'];
     $password = $_POST['password']; 
-	$conn = get_db_connection();
-	$stmt = mysqli_prepare($conn, "SELECT hash FROM user_account WHERE id = ?");
-	mysqli_stmt_bind_param($stmt, "s", $id);
+	$conn = get_mysql_conn();
+	$stmt = mysqli_prepare($conn, "SELECT hash FROM user_account WHERE username = ?");
+	mysqli_stmt_bind_param($stmt, "s", $username);
 	mysqli_stmt_execute($stmt);
 	$result = mysqli_stmt_get_result($stmt);
 	if (mysqli_num_rows($result) === 0) { // 등록되지 않은 아이디
