@@ -1,3 +1,8 @@
+<style type="text/css">
+	form{
+		display:inline-block;
+	}
+</style>
 <?php 
 	$SESSION_PATH = $_SERVER['DOCUMENT_ROOT'] . '/login/session.php';
 	require_once($SESSION_PATH);
@@ -14,8 +19,8 @@
 			<b>PW: </b><input type="password" name="password"> 
 	
 			<input type="submit" value="로그인"> 
-			<a href="/../login/register_page.php"><button>회원가입</button></a>
 		</form>
+		<a href="../login/register_page.php"><button>회원가입</button></a>	
 	</div>
 
 <?php 
