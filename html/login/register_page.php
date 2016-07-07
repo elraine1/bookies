@@ -16,9 +16,12 @@
 		<tr><td>주소:</td><td><input type="text" name="address"></td></tr>
 		<tr><td>이메일:</td><td><input type="text" name="email"></td></tr>
 		<tr><td>연락처:</td><td><input type="text" name="phone"></td></tr>
-		<tr><td>성별:<br>
-		남성<input type="radio" name="gender" value="male">
-		여성<input type="radio" name="gender" value="female"><br></td><td>
+		<tr><td>성별:</td>
+			<td>
+				남성<input type="radio" name="gender" value="male">
+				여성<input type="radio" name="gender" value="female"><br>
+			</td>
+		</tr>
 	</table>
 	<input type="submit" value="가입하기">
 </form>
