@@ -13,6 +13,8 @@
 		require_once($SESSION_PATH);
 		start_session();
 		
+		$_SESSION['request_uri'] = $_SERVER["REQUEST_URI"];
+	
 		if(isset($_SESSION['login_status']) && ($_SESSION['login_status'] === true)){
 		//	printf("<span><b>%s</b> 님 반갑습니다.</span>", $_SESSION['name']);			// 로그인시 이름 외 추가 정보 출력 여부 고민해볼 것.
 
