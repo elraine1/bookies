@@ -11,10 +11,9 @@ start_session();
 if (isset($_POST['username'], $_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password']; 
-	echo "login.php";
+	echo "login.php<br>";
 	
-	$INDEX_PATH = $_SERVER['DOCUMENT_ROOT'] . "/index.php";
-	
+	$INDEX_PATH = $_SERVER['DOCUMENT_ROOT'] . "../index.php";
     if (try_to_login($username, $password) == true) {
         header(sprintf("Location: %s", $INDEX_PATH));
     } else {

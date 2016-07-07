@@ -1,7 +1,4 @@
 <?php
-	$mylib_path = $_SERVER['DOCUMENT_ROOT'] . '/../includes/mylib_bookies.php';
-	require_once($mylib_path);
-
 	function get_mysql_conn(){
 		$hostname='kocia.cytzyor3ndjk.ap-northeast-2.rds.amazonaws.com';
 		$username='bookies';
