@@ -9,8 +9,15 @@
 <h1>가입할 회원 정보를 입력하시오</h1>
 <form action="register.php" method="post">
 	<table>
-		<tr><td>ID:</td><td><input type="text" name="id"></td></tr>
+		<tr><td>ID:</td><td><input type="text" name="username"></td></tr>
 		<tr><td>비번:</td><td><input type="text" name="password"></td></tr>
+		<tr><td>이름:</td><td><input type="text" name="name"></td></tr>
+		<tr><td>주소:</td><td><input type="text" name="address"></td></tr>
+		<tr><td>이메일:</td><td><input type="text" name="email"></td></tr>
+		<tr><td>연락처:</td><td><input type="text" name="phone"></td></tr>
+		<tr><td>성별:<br>
+		남성<input type="radio" name="gender" value="male">
+		여성<input type="radio" name="gender" value="female"><br></td><td>
 	</table>
 	<input type="submit" value="가입하기">
 </form>
