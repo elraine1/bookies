@@ -10,9 +10,12 @@
 }
 
 #div_loginbar{
+	margin-right:1%;
+	margin-left: 70%;
 	text-align:right;
+	color : white;
 	height:35px;
-	background-color:#747474;
+	background-color:;
 	padding-top:5px;
 }
 
@@ -27,7 +30,8 @@
 
 #footer{
 	height:100px;
-	background-color:#B4B4B4;	
+	background-color: ;
+	color : white;	
 }
 
 .content_wrap{

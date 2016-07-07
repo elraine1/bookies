@@ -5,5 +5,5 @@
 	
 	<a href="/../login/index.php"><button>로그인</button></a>
 	
-	<b>(Login Bar)</b>
+	
 </div>

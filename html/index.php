@@ -23,7 +23,7 @@
 		?>		
 		
 			<div id="content">
-				<h2> 내용 </h2><br>
+				<h2> ◆ BOOKIES NEWS ◆</h2><br>
 				여기다 뭐 넣을까.
 				
 			</div>
