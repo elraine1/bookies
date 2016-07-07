@@ -26,19 +26,20 @@ $conn = get_mysql_conn();
 	$address = $row["address"];
 	$email = $row["email"];
 	$phone = $row["phone"];
-	echo '<table>';
-	echo '<tr>'.'<th>'.'<b>'.'아이디 :'.'</b>'.'</th>'.'<td>'.$username.'</td>'.'</tr>';
-	echo '<tr>'.'<th>'.'<b>'.'이름 :'.'</b>'.'</th>'.'<td>'.$name.'</td>'.'</tr>';
-	echo '<tr>'.'<th>'.'<b>'.'나이 :'.'</b>'.'</th>'.'<td>'.$age.'</td>'.'</tr>';
-	echo '<tr>'.'<th>'.'<b>'.'성별 :'.'</b>'.'</th>'.'<td>'.$gender.'</td>'.'</tr>';
-	echo '<tr>'.'<th>'.'<b>'.'주소 :'.'</b>'.'</th>'.'<td>'.$address.'</td>';
-	echo '<tr>'.'<th>'.'<b>'.'이메일 :'.'</b>'.'</th>'.'<td>'.$email.'</td>'.'</tr>';
-	echo '<tr>'.'<th>'.'<b>'.'연락처 :'.'</b>'.'</th>'.'<td>'.$phone.'</td>'.'</tr>';
-	echo '</table>';
+	 printf ("<table>");
+	 printf ("<tr><th><b>아이디 :</b></th><td>%s</td></tr>",$username);
+	 printf ("<tr><th><b>이름 :</b></th><td>%s</td></tr>",$name);
+	 printf ("<tr><th><b>나이 :</b></th><td>%d</td></tr>",$age);
+	 printf ("<tr><th><b>성별 :</b></th><td>%s</td></tr>",$gender);
+	 printf ("<tr><th><b>주소 :</b></th><td>%s</td>",$address);
+	 printf ("<tr><th><b>이메일 :</b></th><td>%s</td></tr>",$email);
+	 printf ("<tr><th><b>연락처 :</b></th><td>%s</td></tr>",$phone);
+	 printf ("</table>");
+	
+ printf ("<a href='modify_profile.php?username=%s'><button>정보 바꿀꺼임.</button></a>",$username);
 ?>
 
 
-<a href="modify_profile.php"><button>정보 바꿀꺼임.</button></a>
 <a href="/index.php"><button>집으로 가자!!</button></a>	
 </body>
 </html>
