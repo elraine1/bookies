@@ -35,7 +35,31 @@
 		return $userinfo;
 	}
 	
-	
+	function get_member_list(){
+		
+		$member_list = array();
+		
+		$conn = get_mysql_conn();
+		$stmt = mysqli_prepare($conn, "SELECT * FROM member ORDER BY grade_id");
+		mysqli_stmt_execute($stmt);
+		
+		$i = 0;
+		$result = mysqli_stmt_get_result($stmt);
+		while($member = mysqli_fetch_assoc($result)){
+			$member_list[$i]['mem_id'] = $member['mem_id'];
+			$member_list[$i]['grade_id'] = $member['grade_id']; // 추후 등급명으로 변경.
+			$member_list[$i]['username'] = $member['username'];
+			$member_list[$i]['name'] = $member['name'];
+			$member_list[$i]['age'] = $member['age'];
+			$member_list[$i]['gender'] = $member['gender'];
+			$member_list[$i]['phone'] = $member['phone'];
+			$member_list[$i]['email'] = $member['email'];
+			
+			$i++;
+		}
+		
+		return $member_list;
+	}
 	
 	
 ?>

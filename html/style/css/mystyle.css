@@ -93,3 +93,8 @@ a, a:link{
 #userinfo_table{
 	text-align:left;
 }
+
+#member_table{
+	border: 1px dotted red;
+	border-collapse:collapse;
+}

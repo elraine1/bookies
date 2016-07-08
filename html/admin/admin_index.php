@@ -25,9 +25,12 @@
 			<div id="content">
 				<h2> 메뉴 5(관리자페이지)</h2><br>
 				여기다 뭐 넣을까.<br>
+			
+				<ul>
+					<li><a href="add_book.php">도서 등록</a></li>
+					<li><a href="member_list.php">회원 정보 보기</a><li>
+				</ul>
 				
-				도서 관리<br>
-				회원 관리<br>
 				
 			</div>
 			
