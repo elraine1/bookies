@@ -61,5 +61,17 @@
 		return $member_list;
 	}
 	
+	function modify_userinfo($userinfo){
+		
+		$conn = get_mysql_conn();
+		$update_query = sprintf("UPDATE member SET age=%d, gender='%s', address='%s', email='%s',phone = '%s' WHERE username ='%s'", $userinfo['age'], $userinfo['gender'], $userinfo['address'], $userinfo['email'],$userinfo['phone'], $userinfo['username']);	
+		
+		if (mysqli_query($conn, $update_query) === false) {
+			die(mysqli_error($conn));
+		}
+		echo "성공적으로 수정되었습니다. <br>";
+		mysqli_close($conn);
+	}
+	
 	
 ?>
