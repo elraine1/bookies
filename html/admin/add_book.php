@@ -29,7 +29,19 @@
 		
 			<div id="content">
 				<h2>도서 등록</h2><br>
-				
+				<table>
+					<tr><th>제목</th><td><input type="text" name="title"></td></tr>
+					<tr><th>ISBN</th><td><input type="text" name="title"></td></tr>
+					<tr><th>작가</th><td><input type="text" name="title"></td></tr>
+					<tr><th>발행년월</th><td><input type="text" name="title"></td></tr>
+					<tr><th>출판사</th><td><input type="text" name="title"></td></tr>
+					<tr><th>언어</th><td><input type="text" name="title"></td></tr>
+					<tr><th>가격</th><td><input type="text" name="title"></td></tr>
+					<tr><th>대여료</th><td><input type="text" name="title"></td></tr>
+					<tr><th>연령제한</th><td><input type="text" name="title"></td></tr>
+					<tr><th>장르</th><td><input type="text" name="title"></td></tr>
+					<tr><th>종류</th><td><input type="text" name="title"></td></tr>
+				</table>
 				
 				
 			</div>

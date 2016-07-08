@@ -28,6 +28,8 @@
 			
 				<ul>
 					<li><a href="add_book.php">도서 등록</a></li>
+					<li><a href="lending_table.php">대여 현황</a></li>
+					<!-- ~~책이 ~~~에게 ~~일 빌려감. ~~일 반납 예정 -->
 					<li><a href="member_list.php">회원 정보 보기</a><li>
 				</ul>
 				
