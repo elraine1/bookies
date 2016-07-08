@@ -11,7 +11,7 @@
 		$userinfo['address'] = $_POST['address'];
 		$userinfo['email'] = $_POST['email'];
 		$userinfo['phone'] = $_POST['phone'];
-			 //작성자, 제목, 컨텐츠 중 내용이 하나라도 빠지면 die.
+
 		if( $userinfo['age'] == ''|| $userinfo['gender'] == ''|| $userinfo['address'] == ''|| $userinfo['email'] == ''|| $userinfo['phone'] == ''){
 			die('빈칸을 모두 채워주세요.');
 		}

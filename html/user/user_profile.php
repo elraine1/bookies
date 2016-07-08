@@ -35,8 +35,8 @@
 					printf("<tr><th><b>연락처 :</b></th><td>%s</td></tr>",$userinfo['phone']);
 					printf("</table><hr>");
 					
-					printf("<a href='modify_profile.php?username=%s'><button>정보 바꿀꺼임.</button></a><br>",$username);
-					printf("<a href='/index.php'><button>집으로 가자!!</button></a>");	
+					printf("<a href='modify_profile.php?username=%s'><button>수정하기</button></a>",$username);
+					printf("<a href='/index.php'><button>메인으로</button></a>");	
 					printf("</div>");
 				?>
 				

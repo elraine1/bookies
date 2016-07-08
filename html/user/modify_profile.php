@@ -23,8 +23,8 @@
 					$userinfo = get_user_info($username);
 										
 					printf("<div id='userinfo_div'>");
-					printf("<h1>정보 수정 양식!</h1>");
-					printf("<h3>내 정보를 수정해졍!!</h3>");	
+					printf("<h1>내정보 수정!</h1>");
+				
 					
 					printf("<form action='modify_process.php' method='post'>");
 					printf("<table id='userinfo_table'>");
@@ -35,7 +35,7 @@
 					printf("<tr><th><b>주소 :</b></th><td><input type='text' value='%s' name='address'></td></tr>",$userinfo['address']);
 					printf("<tr><th><b>이메일 :</b></th><td><input type='text' value='%s' name='email'></td></tr>",$userinfo['email']);
 					printf("<tr><th><b>연락처 :</b></th><td><input type='text' value='%s' name='phone'></td></tr>",$userinfo['phone']);
-					printf("<tr><td colspan='2' align='center'><input type='submit' value='이대로 바꿔졍!'></td></tr>");
+					printf("<tr><td colspan='2' align='center'><input type='submit' value='완료'></td></tr>");
 					printf("</table>");
 					printf("</form>");
 					
