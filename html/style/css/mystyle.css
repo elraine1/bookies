@@ -85,3 +85,11 @@ a, a:link{
 	text-decoration: none;
 	color:black;
 }
+
+
+#userinfo_div{
+	text-align:center;
+}
+#userinfo_table{
+	text-align:left;
+}

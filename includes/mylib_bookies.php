@@ -14,4 +14,28 @@
 	}
 	
 	
+	function get_user_info($username){						
+		$conn = get_mysql_conn();
+		$stmt = mysqli_prepare($conn, "SELECT username,name,age,gender,address,email,phone FROM member WHERE username = ?");
+		mysqli_stmt_bind_param($stmt, "s", $username);
+		mysqli_stmt_execute($stmt);
+
+		$result = mysqli_stmt_get_result($stmt);
+		$row = mysqli_fetch_assoc($result);
+		
+		$userinfo = array();
+		$userinfo['username'] = $row["username"];
+		$userinfo['name'] = $row["name"];
+		$userinfo['age'] = $row["age"];
+		$userinfo['gender'] = $row["gender"];
+		$userinfo['address'] = $row["address"];
+		$userinfo['email'] = $row["email"];
+		$userinfo['phone'] = $row["phone"];
+		
+		return $userinfo;
+	}
+	
+	
+	
+	
 ?>
