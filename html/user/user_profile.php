@@ -37,6 +37,7 @@
 					
 					printf("<a href='modify_profile.php?username=%s'><button>수정하기</button></a>",$username);
 					printf("<a href='/index.php'><button>메인으로</button></a>");	
+					printf("<a href='user_delete.php?username=%s'><button>회원탈퇴</button></a>",$username);
 					printf("</div>");
 				?>
 				
