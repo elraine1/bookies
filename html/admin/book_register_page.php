@@ -61,38 +61,38 @@
 						</tr>
 						
 						<tr><th>가격</th><td><input type="text" name="price" id="price" onblur="calc_fee();" ></td></tr>
-						<tr><th>대여료</th><td><input type="text" name="lending_fee" id="fee" readonly></td></tr>
+						<tr><th>대여료</th><td><input type="text" name="fee" id="fee" readonly></td></tr>
 						<tr><th>연령제한</th>
 							<td>	
 								<select name='age_limit'>
-									<option value="0" selected>전체연령가</option>
-									<option value="12">12세 미만 관람불가</option>
-									<option value="15">15세 미만 관람불가</option>
-									<option value="18">18세 미만 관람불가</option>
+									<option value="전체연령가" selected>전체연령가</option>
+									<option value="12세 미만 관람불가">12세 미만 관람불가</option>
+									<option value="15세 미만 관람불가">15세 미만 관람불가</option>
+									<option value="18세 미만 관람불가">18세 미만 관람불가</option>
 								</select>
 							</td>
 						<tr><th>장르</th>
 							<td>	
 								<select name='genre'>
-									<option value="1" selected>SF</option>
-									<option value="2">호러</option>
-									<option value="3">순정</option>
-									<option value="4">코믹</option>
-									<option value="5">추리</option>
-									<option value="6">로맨스</option>
-									<option value="7">액션</option>
-									<option value="8">학원</option>
-									<option value="9">역사</option>
-									<option value="10">아동</option>
-									<option value="11">기타</option>
+									<option value="SF" selected>SF</option>
+									<option value="호러">호러</option>
+									<option value="순정">순정</option>
+									<option value="코믹">코믹</option>
+									<option value="추리">추리</option>
+									<option value="로맨스">로맨스</option>
+									<option value="액션">액션</option>
+									<option value="학원">학원</option>
+									<option value="역사">역사</option>
+									<option value="아동">아동</option>
+									<option value="기타">기타</option>
 								</select>
 							</td>
 						</tr>
 						<tr><th>종류</th>
 							<td>	
 								<select name='booktype'>
-									<option value="1" selected>만화</option>
-									<option value="2">소설</option>
+									<option value="만화" selected>만화</option>
+									<option value="소설">소설</option>
 								</select>
 							</td>
 						</tr>
