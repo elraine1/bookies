@@ -145,11 +145,6 @@
 	}
 	
 	
-	
-	
-	
-	
-	
 	function get_book_info($book_id){
 		
 		$conn = get_mysql_conn();
@@ -176,13 +171,45 @@
 	}
 	
 	
-	
-	
-	
-	
-	
-	
 	function make_dummy($count){
+	
+		$conn = get_mysql_conn();
+	
+		$booktype = array('만화','소설');
+		$lang = array('eng','kor', 'jap');
+		$age = array('전체이용가', '12세 미만 관람불가', '15세 미만 관람불가', '18세 미만 관람불가');
+		$genre = array('SF','호러','순정','코믹','추리','로맨스','액션','학원','역사','아동','기타');
+		$publisher = array('학산출판사', '대원씨아이', '서울문화사');
+		
+		for($i=0; $i<$count; $i++){
+			
+			$book['title'] = "도서" . $i;
+			$book['isbn'] = 1000000000000 + rand(1,8999999999999);
+			$book['author'] = "작가" . $i;
+			$book['published_date'] = sprintf("%d-%d-%d", rand(1984, 2016), rand(1,12), rand(1,30));
+			$book['publisher'] = $publisher[rand(0,2)];
+			$book['lang'] = $lang[rand(0,2)];
+			$book['price'] = rand(8,24) * 500;
+			$book['fee'] = round($book['price']/1000)*100;
+			$book['age_limit'] = $age[rand(0,2)];
+			$book['genre'] = $genre[rand(0,10)];
+			$book['booktype'] = $booktype[rand(0,1)];
+			
+			usleep(100);
+			
+			$stmt = mysqli_prepare($conn, "INSERT INTO book(title,isbn,author,published_date,publisher,lang, price,fee,age_limit,genre,booktype) 
+											VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			mysqli_stmt_bind_param($stmt, "sssssssssss", $book['title'],$book['isbn'],$book['author'],$book['published_date'],
+					$book['publisher'],$book['lang'],$book['price'],$book['fee'],$book['age_limit'],$book['genre'],$book['booktype']);
+			
+			mysqli_stmt_execute($stmt);		
+		}
+
+		mysqli_close($conn);
+	}
+		
+	/*
+	function make_dummy_account($count){
 	
 		$conn = get_mysql_conn();
 	
@@ -206,7 +233,7 @@
 			$book['genre'] = $genre[rand(0,10)];
 			$book['booktype'] = $booktype[rand(0,1)];
 			
-			usleep(2000);
+			usleep(1000);
 			
 			$stmt = mysqli_prepare($conn, "INSERT INTO book(title,isbn,author,published_date,publisher,lang, price,fee,age_limit,genre,booktype) 
 											VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -218,4 +245,12 @@
 
 		mysqli_close($conn);
 	}
+	*/
+	
+	
+	
+	
+	
+	
+	
 ?>

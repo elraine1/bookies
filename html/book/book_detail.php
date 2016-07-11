@@ -51,10 +51,15 @@
 					printf("<tr><th>종류</th><td>%s</td></tr>", $book['booktype']);
 					printf("<tr><th>출판사</th><td>%s</td></tr>", $book['publisher']);
 					printf("<tr><th>출판일</th><td>%s</td></tr>", $book['published_date']);
-					printf("<tr><td colspan='2' align='center'>");
-					printf("<button>수정</button>");
-					printf("<button>삭제</button>");
-					printf("</td></tr>");
+					
+					// 관리자 계정으로 접속한 경우에만 도서 수정/삭제 가능.
+					if(isset($_SESSION['admin_mode']) && ($_SESSION['admin_mode'] == true)){
+						printf("<tr><td colspan='2' align='center'>");
+						printf("<button>수정</button>");
+						printf("<button>삭제</button>");
+						printf("</td></tr>");
+					}
+					
 					printf("</table>");
 					
 					
