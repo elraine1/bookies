@@ -10,7 +10,10 @@
 		table, tr, th, td{
 			border: 1px solid red;
 			border-collapse: collapse;
-			border-
+			text-align:center;
+		}
+		th{
+			background-color: salmon;
 		}
 	
 	</style>
@@ -62,7 +65,7 @@
 					$bookcase = get_bookcase($booktype, $page_start, $page_end);
 					
 					printf("<table>");
-					printf("<tr><th>번호</th><th>타입</th><th>장르</th><th>제목</th><th>연령제한</th><th>도서정가</th><th>대여료</th><th>출판사</th><th>대여상태</th></tr>");
+					printf("<tr><th>번호</th><th>타입</th><th>장르</th><th width='500'>제목</th><th>연령제한</th><th>도서정가</th><th>대여료</th><th>출판사</th><th>대여상태</th></tr>");
 					for($i=0; $i<count($bookcase); $i++){
 						
 						printf("<tr><td>%d</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%d</td><td>%s</td><td>%s</td></tr>", 
@@ -70,6 +73,19 @@
 						$bookcase[$i]['price'], $bookcase[$i]['fee'], $bookcase[$i]['publisher'], $bookcase[$i]['status']);
 					}
 					printf("</table>");
+					?>
+					<form action="#" method='post'>
+						<select name='category'>
+							<option value='title' selected>제목</option>
+							<option value='author'>작가</option>
+							<option value='publisher'>출판사</option>
+						</select>
+						<input type='text' name='search_word'>
+						<input type='submit' value='검색'>
+					</form>
+					<br>
+					<?php
+
 					
 					// Block Paging
 					// 이전 block, 다음 block 이 없는 경우 <a> 태그 사용 안 함. 

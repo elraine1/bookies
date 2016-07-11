@@ -175,6 +175,7 @@
 		$lang = array('eng','kor', 'jap');
 		$age = array('전체이용가', '12세 미만 관람불가', '15세 미만 관람불가', '18세 미만 관람불가');
 		$genre = array('SF','호러','순정','코믹','추리','로맨스','액션','학원','역사','아동','기타');
+		$publisher = array('학산출판사', '대원씨아이', '서울문화사');
 		
 		for($i=0; $i<$count; $i++){
 			
@@ -182,15 +183,15 @@
 			$book['isbn'] = 1000000000000 + rand(1,8999999999999);
 			$book['author'] = "작가" . $i;
 			$book['published_date'] = rand(1984, 2016) . "-" . rand(1,12) . "-" . rand(1,30);
-			$book['publisher'] = "xx출판사";
+			$book['publisher'] = $publisher[rand(0,2)];
 			$book['lang'] = $lang[rand(0,2)];
 			$book['price'] = rand(8,24) * 500;
 			$book['fee'] = round($book['price']/1000)*100;
 			$book['age_limit'] = $age[rand(0,2)];
 			$book['genre'] = $genre[rand(0,10)];
-			$book['booktype'] = $booktype[rand(0,1)];	
+			$book['booktype'] = $booktype[rand(0,1)];
 			
-			usleep(5000);
+			usleep(2000);
 			
 			$stmt = mysqli_prepare($conn, "INSERT INTO book(title,isbn,author,published_date,publisher,lang, price,fee,age_limit,genre,booktype) 
 											VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
