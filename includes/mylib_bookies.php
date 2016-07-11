@@ -73,5 +73,38 @@
 		mysqli_close($conn);
 	}
 	
+	function delete_user($username){
+		$conn = get_mysql_conn();		
+		$delete_query = sprintf("DELETE FROM member WHERE username='%s'", $username);
+		
+		if (mysqli_query($conn, $delete_query) === false) {
+			die(mysqli_error($conn));
+		}
+	}
+
+	function get_bookcase(){
+		
+		$conn = get_mysql_conn();
+		
+		$stmt = mysqli_prepare($conn, "SELECT book_id, title, genre, age_limit, price, fee, booktype, publisher FROM book");
+		mysqli_stmt_execute($stmt);
+		
+		$i=0;
+		$result = mysqli_stmt_get_result($stmt);
+		while($book = mysqli_fetch_assoc($result)){
+			
+			$bookcase[$i]['book_id'] = $book['book_id'];
+			$bookcase[$i]['title'] = $book['title'];
+			$bookcase[$i]['genre'] = $book['genre'];
+			$bookcase[$i]['age_limit'] = $book['age_limit'];
+			$bookcase[$i]['price'] = $book['price'];
+			$bookcase[$i]['fee'] = $book['fee'];
+			$bookcase[$i]['booktype'] = $book['booktype'];
+			$bookcase[$i]['publisher'] = $book['publisher'];
+		
+			$i++;
+		}
+		return $bookcase;
+	}
 	
 ?>
