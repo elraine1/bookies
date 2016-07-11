@@ -150,15 +150,30 @@
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	function get_book_info($book_id){
+		
+		$conn = get_mysql_conn();
+		$stmt = mysqli_prepare($conn, "SELECT * FROM book WHERE book_id = ?");
+		mysqli_stmt_bind_param($stmt, "s", $book_id);
+		mysqli_stmt_execute($stmt);
+		$result = mysqli_stmt_get_result($stmt);
+		$row = mysqli_fetch_assoc($result);
+		
+		$book['book_id'] = $row['book_id'];
+		$book['title'] = $row['title'];
+		$book['isbn'] = $row['isbn'];
+		$book['author'] = $row['author'];
+		$book['published_date'] = $row['published_date'];
+		$book['publisher'] = $row['publisher'];
+		$book['lang'] = $row['lang'];
+		$book['price'] = $row['price'];
+		$book['fee'] = $row['fee'];
+		$book['age_limit'] = $row['age_limit'];
+		$book['genre'] = $row['genre'];
+		$book['booktype'] = $row['booktype'];
+		
+		return $book;;
+	}
 	
 	
 	

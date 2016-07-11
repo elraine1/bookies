@@ -68,9 +68,17 @@
 					printf("<tr><th>번호</th><th>타입</th><th>장르</th><th width='500'>제목</th><th>연령제한</th><th>도서정가</th><th>대여료</th><th>출판사</th><th>대여상태</th></tr>");
 					for($i=0; $i<count($bookcase); $i++){
 						
-						printf("<tr><td>%d</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%d</td><td>%s</td><td>%s</td></tr>", 
-						$bookcase[$i]['book_id'], $bookcase[$i]['booktype'], $bookcase[$i]['genre'], $bookcase[$i]['title'], $bookcase[$i]['age_limit'], 
-						$bookcase[$i]['price'], $bookcase[$i]['fee'], $bookcase[$i]['publisher'], $bookcase[$i]['status']);
+						printf("<tr>");
+						printf("<td><a href='book_detail.php?book_id=%d'>%d</a></td>", $bookcase[$i]['book_id'], $bookcase[$i]['book_id']);
+						printf("<td>%s</td>", $bookcase[$i]['booktype']);
+						printf("<td><a href='#'>%s</td></td>", $bookcase[$i]['genre']);
+						printf("<td><a href='book_detail.php?book_id=%d'>%s</td></td>", $bookcase[$i]['book_id'], $bookcase[$i]['title']);
+						printf("<td>%s</td>", $bookcase[$i]['age_limit']);
+						printf("<td>%d</td>", $bookcase[$i]['price']);
+						printf("<td>%d</td>", $bookcase[$i]['fee']);
+						printf("<td><a href='#'>%s</a></td>", $bookcase[$i]['publisher']);
+						printf("<td>%s</td>", $bookcase[$i]['status']);
+						printf("</tr>");
 					}
 					printf("</table>");
 					?>
@@ -102,7 +110,6 @@
 						}else {
 							printf("[<a href='bookcase.php?booktype=%s&page=%d'>%d</a>]", $booktype, $i, $i);
 						}
-					
 					}
 					if($block_end == $total_page){
 						printf("[다음▶]");
