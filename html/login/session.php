@@ -48,6 +48,8 @@ function try_to_login($username, $password) {
 		
 		if($_SESSION['username'] == "admin"){		// 관리자 계정의 경우 관리자모드 on.
 			$_SESSION['admin_mode'] = true;
+		}else {
+			$_SESSION['admin_mode'] = false;
 		}
 
 		return true;

@@ -8,6 +8,8 @@
 		<?php
 			if(isset($_SESSION['admin_mode']) && ($_SESSION['admin_mode'] == true)){
 				printf("<li><a href='../admin/admin_index.php'><h4>관리페이지</h4></a></li>");
+			}else if(isset($_SESSION['login_status']) && ($_SESSION['login_status'] == true)){
+				printf("<li><a href='#'><h4>대여 현황</h4></a></li>");
 			}
 		?>
 	</ul>

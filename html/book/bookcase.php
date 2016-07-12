@@ -7,6 +7,9 @@
 	<link rel="stylesheet" type="text/css" href="/style/css/mystyle.css">
 	
 	<style type="text/css">
+		table{
+			margin-left: 25px;
+		}
 		table, tr, th, td{
 			border: 1px solid red;
 			border-collapse: collapse;
@@ -77,10 +80,23 @@
 						printf("<td>%d</td>", $bookcase[$i]['price']);
 						printf("<td>%d</td>", $bookcase[$i]['fee']);
 						printf("<td><a href='#'>%s</a></td>", $bookcase[$i]['publisher']);
-						printf("<td>%s</td>", $bookcase[$i]['status']);
+						printf("<td>%s", $bookcase[$i]['status']);
+						
+						if(isset($_SESSION['login_status']) && ($_SESSION['login_status'] == true) 
+							&& ($_SESSION['admin_mode'] == false) && $bookcase[$i]['status'] == true){
+							printf("<input type='checkbox'></td>");
+						}else {
+							printf("</td>");
+						}
 						printf("</tr>");
 					}
 					printf("</table>");
+					
+					if(isset($_SESSION['login_status']) && ($_SESSION['login_status'] == true) 
+						&& $_SESSION['admin_mode'] == false){
+						printf("<a href='#'><button>선택 도서 대여</button></a>");
+					}
+					
 					?>
 					<form action="#" method='post'>
 						<select name='category'>
