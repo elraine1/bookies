@@ -55,8 +55,8 @@
 					// 관리자 계정으로 접속한 경우에만 도서 수정/삭제 가능.
 					if(isset($_SESSION['admin_mode']) && ($_SESSION['admin_mode'] == true)){
 						printf("<tr><td colspan='2' align='center'>");
-						printf("<button>수정</button>");
-						printf("<button>삭제</button>");
+						printf("<a href='book_modify.php?book_id=%d'><button>수정</button></a>",$book_id);
+						printf("<a href='book_delete.php?book_id=%d'><button>삭제</button></a>",$book_id);
 						printf("</td></tr>");
 					}
 					

@@ -88,6 +88,29 @@
 		
 		mysqli_close($conn);
 	}
+	
+	function modify_book($book){
+		
+		$conn = get_mysql_conn();
+		$update_query = sprintf("UPDATE book SET title='%s', genre='%s', age_limit='%s', price=%d,fee = %d,booktype = '%s' ,publisher = '%s' ,published_date = %d WHERE book_id =%d", 
+				$book['title'], $book['genre'], $book['age_limit'], $book['price'], $book['fee'],  $book['booktype'], $book['publisher'], $book['published_date'], $book['book_id']);	
+		
+		if (mysqli_query($conn, $update_query) === false) {
+			die(mysqli_error($conn));
+		}
+		echo "성공적으로 수정되었습니다. <br>";
+		mysqli_close($conn);
+	}
+	function delete_book($book_id){
+		$conn = get_mysql_conn();		
+		$delete_query = sprintf("DELETE FROM book WHERE book_id=%d", $book_id);
+		
+		if (mysqli_query($conn, $delete_query) === false) {
+			die(mysqli_error($conn));
+		}
+		
+		mysqli_close($conn);
+	}
 
 	function get_bookcase($booktype, $start, $end){
 
