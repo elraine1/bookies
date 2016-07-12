@@ -66,9 +66,10 @@
 					}
 						
 					$bookcase = get_bookcase($booktype, $page_start, $page_end);
-					
+					printf("<form action='book_lending.php' method='post'>");
 					printf("<table>");
 					printf("<tr><th>번호</th><th>타입</th><th>장르</th><th width='500'>제목</th><th>연령제한</th><th>도서정가</th><th>대여료</th><th>출판사</th><th>대여상태</th></tr>");
+					
 					for($i=0; $i<count($bookcase); $i++){
 						
 						printf("<tr>");
@@ -84,17 +85,22 @@
 						
 						if(isset($_SESSION['login_status']) && ($_SESSION['login_status'] == true) 
 							&& ($_SESSION['admin_mode'] == false) && $bookcase[$i]['status'] == true){
-							printf("<input type='checkbox'></td>");
+							
+							printf("<input type='checkbox' name='lending[]' value='%d'></td>",$bookcase[$i]['book_id']);
+							
 						}else {
 							printf("</td>");
 						}
 						printf("</tr>");
 					}
+					
 					printf("</table>");
+					printf("<input type='submit' value='선택도서대여'>");
+					printf("</form>");
 					
 					if(isset($_SESSION['login_status']) && ($_SESSION['login_status'] == true) 
 						&& $_SESSION['admin_mode'] == false){
-						printf("<a href='#'><button>선택 도서 대여</button></a>");
+					
 					}
 					
 					?>
