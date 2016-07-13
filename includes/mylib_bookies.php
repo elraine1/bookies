@@ -65,6 +65,37 @@
 		return $member_list;
 	}
 	
+	function get_new_book(){
+		$conn = get_mysql_conn();
+		$stmt = mysqli_prepare($conn, "SELECT * FROM book WHERE  date(update_date) >= date(subdate(now(), INTERVAL 7 DAY)) and date(update_date) <= date(now()) ORDER BY update_date DESC LIMIT 30");
+		mysqli_stmt_execute($stmt);
+		
+		$result = mysqli_stmt_get_result($stmt);
+		$i=0;
+		while($book = mysqli_fetch_assoc($result)){
+			
+			
+			$new_book[$i]['book_id'] = $book['book_id'];
+			$new_book[$i]['title'] = $book['title'];
+			$new_book[$i]['author'] = $book['author'];
+			$new_book[$i]['published_date'] = $book['published_date'];
+			$new_book[$i]['publisher'] = $book['publisher'];
+			$new_book[$i]['lang'] = $book['lang'];
+			$new_book[$i]['price'] = $book['price'];
+			$new_book[$i]['fee'] = $book['fee'];
+			$new_book[$i]['age_limit'] = $book['age_limit'];
+			$new_book[$i]['genre'] = $book['genre'];
+			$new_book[$i]['booktype'] = $book['booktype'];
+			$new_book[$i]['status'] = $book['status'];
+			$new_book[$i]['update_date'] = $book['update_date'];
+	
+			$i++;
+		}
+		mysqli_free_result($result);
+		mysqli_close($conn);
+		return $new_book;
+	}
+	
 	function modify_userinfo($userinfo){
 		
 		$conn = get_mysql_conn();
