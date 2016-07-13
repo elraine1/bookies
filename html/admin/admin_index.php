@@ -35,7 +35,11 @@
 				<h5>더미 생성 버튼</h5>
 				<a href="#"><button>계정</button></a>
 				<a href="make_dummy.php"><button>도서</button></a>
-				
+				<?php 
+					date_default_timezone_set('Asia/Seoul');
+					echo date("Y-m-d h:m:s", strtotime(sprintf("+%d day", 3)));
+//					echo (date("Y-m-d") + strtotime(sprintf("+%d day", 3)));
+				?>
 			</div>
 			
 		</div>

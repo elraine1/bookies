@@ -43,11 +43,11 @@
 					
 					printf("<table>");
 					printf("<tr><th>번호</th><td>%d</td></tr>", $book['book_id']);
-					printf("<tr><th>제목</th><td>%s</td></tr>", $book['title']);
+					printf("<tr><th>제목</th><td width='200'>%s</td></tr>", $book['title']);
 					printf("<tr><th>장르</th><td>%s</td></tr>", $book['genre']);
 					printf("<tr><th>연령 제한</th><td>%s</td></tr>", $book['age_limit']);
-					printf("<tr><th>정가</th><td>%d</td></tr>", $book['price']);
-					printf("<tr><th>대여료</th><td>%d</td></tr>", $book['fee']);
+					printf("<tr><th>정가</th><td>%d원</td></tr>", $book['price']);
+					printf("<tr><th>대여료</th><td>%d원</td></tr>", $book['fee']);
 					printf("<tr><th>종류</th><td>%s</td></tr>", $book['booktype']);
 					printf("<tr><th>출판사</th><td>%s</td></tr>", $book['publisher']);
 					printf("<tr><th>출판일</th><td>%s</td></tr>", $book['published_date']);
@@ -57,6 +57,11 @@
 						printf("<tr><td colspan='2' align='center'>");
 						printf("<a href='book_modify.php?book_id=%d'><button>수정</button></a>",$book_id);
 						printf("<a href='book_delete.php?book_id=%d'><button>삭제</button></a>",$book_id);
+						printf("</td></tr>");
+					}else if(isset($_SESSION['login_status']) && ($_SESSION['login_status'] == true)){
+						printf("<tr><td colspan='2' align='center'>");
+						printf("<a href='#'><button>대여하기</button></a>");
+						printf("<a href='#'><button>취소</button></a>");
 						printf("</td></tr>");
 					}
 					

@@ -16,7 +16,7 @@
 	
 	function get_user_info($username){						
 		$conn = get_mysql_conn();
-		$stmt = mysqli_prepare($conn, "SELECT username,name,age,gender,address,email,phone FROM member WHERE username = ?");
+		$stmt = mysqli_prepare($conn, "SELECT mem_id, username,name,age,gender,address,email,phone FROM member WHERE username = ?");
 		mysqli_stmt_bind_param($stmt, "s", $username);
 		mysqli_stmt_execute($stmt);
 
@@ -24,6 +24,7 @@
 		$row = mysqli_fetch_assoc($result);
 		
 		$userinfo = array();
+		$userinfo['mem_id'] = $row["mem_id"];
 		$userinfo['username'] = $row["username"];
 		$userinfo['name'] = $row["name"];
 		$userinfo['age'] = $row["age"];
@@ -300,6 +301,63 @@
 		mysqli_close($conn);
 	}
 	*/
+	
+	function lending_in_list($lending, $username){
+		for($i=0; $i<count($lending); $i++){
+			lending_book($lending[$i], $username);
+		}
+	}
+	
+	function lending_book($book_id, $username){
+		date_default_timezone_set('Asia/Seoul');
+
+		$userinfo = get_user_info($username);
+		$bookinfo = get_book_info($book_id);
+		
+		$rental_days = get_rental_days($bookinfo['booktype']);
+		$lend_date = date("Y-m-d h:m:s");
+		$due_date = date("Y-m-d", strtotime(sprintf("+%d day", $rental_days)));
+		
+		$conn = get_mysql_conn();
+		$stmt = mysqli_prepare($conn, "INSERT INTO lending(book_id, mem_id, lend_date, due_date) values(?, ?, ?, ?)");
+		mysqli_stmt_bind_param($stmt, "ssss", $book_id, $userinfo['mem_id'], $lend_date, $due_date);
+		mysqli_stmt_execute($stmt);
+		
+		/// 대여 상태 업데이트 해야함. true -> false;
+		// 	대여 횟수 +1
+		book_lending_update($book_id);
+		
+		mysqli_close($conn);
+	}
+	
+	// 도서 타입별 대여일 수 계산(만화=1일, 소설=3일)
+	function get_rental_days($booktype){
+		
+		$days = 0;
+		$conn = get_mysql_conn();
+		$stmt = mysqli_prepare($conn, "SELECT rental_days FROM booktype WHERE booktype_desc = ?");
+		mysqli_stmt_bind_param($stmt, "s", $booktype);
+		mysqli_stmt_execute($stmt);
+		
+		$result = mysqli_stmt_get_result($stmt);
+		$tmp = mysqli_fetch_assoc($result);
+		$days = $tmp['rental_days'];
+		
+		mysqli_free_result($result);
+		mysqli_close($conn);
+		
+		return $days;
+	}
+	
+	// 대여 상태 변경.
+	function book_lending_update($book_id){
+		
+		$conn = get_mysql_conn();
+		$stmt = mysqli_prepare($conn, "UPDATE book SET lending_count = lending_count+1, status = false WHERE book_id = ?");
+		mysqli_stmt_bind_param($stmt, "s", $book_id);
+		mysqli_stmt_execute($stmt);
+		mysqli_close($conn);
+	}
 	
 	
 	

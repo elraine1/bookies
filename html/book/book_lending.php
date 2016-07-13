@@ -50,19 +50,31 @@
 						$lend_list[] = $book;
 					}
 					
-					$total_fee = 0;
+					
 					
 					printf("<div id='lend_list'>");
 					printf("<h3>선택 목록</h3>");
+					printf("<form action='lending_process.php' method='POST'>");
+					$total_fee = 0;
+					
 					printf("<table>");
-					printf("<tr><th>번호</th><th width='400'>제목</th><th width='100'>fee</th></tr>");
+					printf("<tr><th>번호</th><th width='400'>제목</th><th width='100'>대여료</th></tr>");
 					for($i=0; $i<count($lend_list); $i++){
 						$total_fee += $lend_list[$i]['fee'];
-						printf("<tr><td>%d</td><td>%s</td><td>%d원</td></tr>",  $i+1, $lend_list[$i]['title'], $lend_list[$i]['fee']);
+						printf("<input type='hidden' name='lending[]' value='%s'", $lend_list[$i]['book_id']);
+						printf("<tr>");
+						printf("<td>%d</td>", $i+1);
+						printf("<td><a href='book_detail.php?book_id=%d'>%s</a></td>", $lend_list[$i]['book_id'], $lend_list[$i]['title']);
+						printf("<td>%d원</td>", $lend_list[$i]['fee']);
+						printf("</tr>");
 					}
 					printf("<tr><td colspan='3'>총 대여료는 %d원 입니다.</td></tr>", $total_fee);
-					printf("<tr><td colspan='3' align='center'><button>결제</button><button>취소</button></td></tr>");
+					printf("<tr><td colspan='3' align='center'>");
+					printf("<input type='submit' value='결제'>");
+					printf("<input type='reset' value='취소'>");
+					printf("</td></tr>");
 					printf("</table>");
+					printf("</form>");
 					printf("</div>");
 				?>
 			</div>
