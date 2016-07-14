@@ -69,37 +69,44 @@
 					
 						$username = $_SESSION['username'];
 						$lending_list = get_my_lending_list($username);
+						
+						if(count($lending_list) < 1){
+							printf("<h3>현재 대여 중인 도서가 없습니다.</h3><br>");
+							printf("<a href='../index.php'>홈으로</a>");
 							
-						printf("<div>");
-						printf("<h3> 대여 현황(대여 정보) </h3><br>");
-						printf("<b>%s </b>님께서 대여 중인 도서는 총 <b>%d</b> 권 입니다. <br><br>", $username, count($lending_list));
-					
-						printf("<form action='../book/return_process.php' method='POST'> ");
-						printf("<table>");
-						printf("<tr><th>번호</th><th>종류</th><th width='300'>도서명</th><th>대여일시</th><th>반납예정일</th><th>연체일</th><th>선택</th></tr>");
+						}else {
+							
+							printf("<div>");
+							printf("<h3> 대여 현황(대여 정보) </h3><br>");
+							printf("<b>%s </b>님께서 대여 중인 도서는 총 <b>%d</b> 권 입니다. <br><br>", $username, count($lending_list));
 						
-						for($i=0; $i<count($lending_list); $i++){
-							printf("<tr>");
-							printf("<td>%d</td>", $i+1);
-							printf("<td>%s</td>", $lending_list[$i]['booktype']);
-							printf("<td>%s</td>", $lending_list[$i]['title']);
-							printf("<td>%s</td>", $lending_list[$i]['lend_date']);
-							printf("<td>%s</td>", $lending_list[$i]['due_date']);
-							printf("<td>%s</td>", $lending_list[$i]['delay']);
-							printf("<td><input type='checkbox' name='return_list[]' value='%d'></td>", $lending_list[$i]['lending_id']);
-							printf("</tr>");
+							printf("<form action='../book/return_process.php' method='POST'> ");
+							printf("<table>");
+							printf("<tr><th>번호</th><th>종류</th><th width='300'>도서명</th><th>대여일시</th><th>반납예정일</th><th>연체일</th><th>선택</th></tr>");
+							
+							for($i=0; $i<count($lending_list); $i++){
+								printf("<tr>");
+								printf("<td>%d</td>", $i+1);
+								printf("<td>%s</td>", $lending_list[$i]['booktype']);
+								printf("<td>%s</td>", $lending_list[$i]['title']);
+								printf("<td>%s</td>", $lending_list[$i]['lend_date']);
+								printf("<td>%s</td>", $lending_list[$i]['due_date']);
+								printf("<td>%s</td>", $lending_list[$i]['delay']);
+								printf("<td><input type='checkbox' name='return_list[]' value='%d'></td>", $lending_list[$i]['lending_id']);
+								printf("</tr>");
+							}
+							printf("<tr><td colspan='7' align='center'><input type='button' value='전체 선택' onclick='select_all()'><input type='submit' value='선택도서 반납'></td></tr>");
+							printf("</table><br><br>");
+							printf("</form>");
+						
+							printf("<br>항상 이용해주셔서 감사합니다.<br>");
+							printf("</div>");
 						}
-						printf("<tr><td colspan='7' align='center'><input type='button' value='전체 선택' onclick='select_all()'><input type='submit' value='선택도서 반납'></td></tr>");
-						printf("</table><br><br>");
-						printf("</form>");
-					
-						printf("<br>항상 이용해주셔서 감사합니다.<br>");
-						printf("</div>");
-						
+							
 					} else{
 						
 						printf("<b>로그인 후 이용하실 수 있습니다.</b><br>");
-						printf("<a href='../index.php'>메인으로</a>");
+						printf("<a href='../index.php'>홈으로</a>");
 					}
 				
 				?>
