@@ -23,7 +23,7 @@
 	
 	function select_all(){
 		
-		var returnList = document.getElementsByName('return_list');
+		var returnList = document.getElementsByName('return_list[]');
 		var checkSum = 0;		
 		var check = true;
 		
@@ -68,13 +68,12 @@
 					if(isset($_SESSION['login_status']) && ($_SESSION['login_status']==true)){
 					
 						$username = $_SESSION['username'];
-						
+						$lending_list = get_my_lending_list($username);
+							
 						printf("<div>");
 						printf("<h3> 대여 현황(대여 정보) </h3><br>");
-						printf("<b>%s </b>님께서 대여 중인 도서는 다음과 같습니다. <br><br>", $username);
+						printf("<b>%s </b>님께서 대여 중인 도서는 총 <b>%d</b> 권 입니다. <br><br>", $username, count($lending_list));
 					
-						
-						$lending_list = get_my_lending_list($username);
 						printf("<form action='../book/return_process.php' method='POST'> ");
 						printf("<table>");
 						printf("<tr><th>번호</th><th>종류</th><th width='300'>도서명</th><th>대여일시</th><th>반납예정일</th><th>연체일</th><th>선택</th></tr>");
