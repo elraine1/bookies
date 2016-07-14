@@ -48,24 +48,24 @@
 				printf("<div>");
 					printf("<h2> 베스트 </h2><br>");
 					printf("<table id='best_book'>");
-					printf("<tr><th>제목</th><th>작가</th><th>출간일</th><th>출판사</th><th>언어</th><th>가격</th>
-							<th>대여료</th><th>연령제한</th><th>장르</th><th>책종류</th><th>총대여횟수</th><th>입고일</th></tr>");
+					printf("<tr><th>제목</th><th>작가</th><th>출판사</th><th>언어</th>
+							<th>대여료</th><th>연령제한</th><th>장르</th><th>책종류</th><th>총대여횟수</th></tr>");
 					
 					
 					for($i=0; $i<count($best_book); $i++){
 						printf("<tr>");
-						printf("<td>%s</td>", $best_book[$i]['title']);
+						printf("<td><a href='../book/book_detail.php?book_id=%d'>%s</td></td>", $best_book[$i]['book_id'], $best_book[$i]['title']);
 						printf("<td>%s</td>", $best_book[$i]['author']);
-						printf("<td>%s</td>", $best_book[$i]['published_date']);
+						
 						printf("<td>%s</td>", $best_book[$i]['publisher']);
 						printf("<td>%s</td>", $best_book[$i]['lang']);
-						printf("<td>%d</td>", $best_book[$i]['price']);
+						
 						printf("<td>%d</td>", $best_book[$i]['fee']);
 						printf("<td>%s</td>", $best_book[$i]['age_limit']);
 						printf("<td>%s</td>", $best_book[$i]['genre']);
 						printf("<td>%s</td>", $best_book[$i]['booktype']);
 						printf("<td>%s</td>", $best_book[$i]['lending_count']);
-						printf("<td>%s</td>", $best_book[$i]['update_date']);
+						
 						printf("</tr>");
 					}
 					
