@@ -35,7 +35,7 @@
 }
 
 .content_wrap{
-	height: 900px;
+	height: 920px;
 	width: 85%;
 	background-color: ;
 	margin: 0 auto;
@@ -44,11 +44,11 @@
 
 #menu{
 	height: 100%;
-	width: 8%;
+	width: 10%;
 	float: left;
 	background-color:
-	margin:;
-	margin-left: 15%;
+	margin: 0 auto;
+	margin-left: 10%;
 }
 
 #content{
@@ -121,3 +121,11 @@ a, a:link{
 input{
 	button-align:right
 }
+
+#logout_btn{
+	display: inline-block;
+}
+#login_form{
+	display: inline-block;
+}
+

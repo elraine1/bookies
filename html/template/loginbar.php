@@ -11,11 +11,11 @@
 		if(isset($_SESSION['login_status']) && ($_SESSION['login_status'] === true)){
 		//	printf("<span><b>%s</b> 님 반갑습니다.</span>", $_SESSION['name']);			// 로그인시 이름 외 추가 정보 출력 여부 고민해볼 것.
 		echo "<tr>";
-		printf("<form action='../user/user_profile.php' method='post'>");
+		printf("<form id='login_form' action='../user/user_profile.php' method='post'>");
 		printf("<span><b>%s</b> 님 환영합니다. </span>", $_SESSION['name']);
 		printf("<input type='submit' value='내정보보기'>");	
 		printf("</form>");
-		printf("<a href='../login/logout.php'><button>로그아웃</button></a>");
+		printf("<a href='../login/logout.php'><button id='logout_btn'>로그아웃</button></a>");
 		echo "</tr>";
 		
 		}else {

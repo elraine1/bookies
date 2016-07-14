@@ -95,7 +95,7 @@
 					
 					if(isset($_SESSION['login_status']) && ($_SESSION['login_status'] == true) 
 						&& $_SESSION['admin_mode'] == false){
-						printf("<input type='submit' value='선택도서대여'>");
+						printf("<input id='lend_btn' type='submit' value='선택도서대여'>");
 					}
 					printf("</form>");
 					
