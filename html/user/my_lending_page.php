@@ -75,7 +75,7 @@
 					
 						
 						$lending_list = get_my_lending_list($username);
-						printf("<form action='#' method='POST'> ");
+						printf("<form action='../book/return_process.php' method='POST'> ");
 						printf("<table>");
 						printf("<tr><th>번호</th><th>종류</th><th width='300'>도서명</th><th>대여일시</th><th>반납예정일</th><th>연체일</th><th>선택</th></tr>");
 						
@@ -87,7 +87,7 @@
 							printf("<td>%s</td>", $lending_list[$i]['lend_date']);
 							printf("<td>%s</td>", $lending_list[$i]['due_date']);
 							printf("<td>%s</td>", $lending_list[$i]['delay']);
-							printf("<td><input type='checkbox' name='return_list' ></td>");
+							printf("<td><input type='checkbox' name='return_list[]' value='%d'></td>", $lending_list[$i]['lending_id']);
 							printf("</tr>");
 						}
 						printf("<tr><td colspan='7' align='center'><input type='button' value='전체 선택' onclick='select_all()'><input type='submit' value='선택도서 반납'></td></tr>");

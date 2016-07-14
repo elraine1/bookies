@@ -359,6 +359,59 @@
 		mysqli_close($conn);
 	}
 	
+	// 반납 목록에 있는 도서 반납
+	function return_in_list($return_list, $username){
+		for($i=0; $i<count($return_list); $i++){
+			return_book($return_list[$i], $username);
+		}
+	}
+	
+	// 도서 반납
+	function return_book($lending_id, $username){
+		date_default_timezone_set('Asia/Seoul');
+
+		$userinfo = get_user_info($username);
+		$return_date = date("Y-m-d h:m:s");
+		
+		$conn = get_mysql_conn();
+		$stmt = mysqli_prepare($conn, "UPDATE lending SET return_status = true, return_date = ? WHERE lending_id = ?");
+		mysqli_stmt_bind_param($stmt, "ss", $return_date, $lending_id);
+		mysqli_stmt_execute($stmt);
+		
+		$book_id = get_book_id_by_lending_id($lending_id);
+		book_return_update($book_id);
+		
+		mysqli_close($conn);
+	}
+	
+	// 대여 상태 변경.
+	function book_return_update($book_id){
+		
+		$conn = get_mysql_conn();
+		$stmt = mysqli_prepare($conn, "UPDATE book SET status = true WHERE book_id = ?");
+		mysqli_stmt_bind_param($stmt, "s", $book_id);
+		mysqli_stmt_execute($stmt);
+		mysqli_close($conn);
+	}
+	
+	// lending_id로 book_id를 얻어오는 함수
+	function get_book_id_by_lending_id($lending_id){
+		
+		$conn = get_mysql_conn();
+		$stmt = mysqli_prepare($conn, "SELECT book_id FROM lending WHERE lending_id = ?");
+		mysqli_stmt_bind_param($stmt, "s", $lending_id);
+		mysqli_stmt_execute($stmt);
+		
+		$result = mysqli_stmt_get_result($stmt);
+		$tmp = mysqli_fetch_assoc($result);
+		$book_id = $tmp['book_id'];
+		
+		mysqli_close($conn);
+
+		return $book_id;
+	}
+	
+	// 내 대여 현황 (리스트 반환)
 	function get_my_lending_list($username){
 		
 		$lending_list = array();
@@ -367,7 +420,7 @@
 		
 		$conn = get_mysql_conn();
 		$stmt = mysqli_prepare($conn, "	SELECT * 
-										FROM (	SELECT lending.book_id as book_id, mem_id, lend_date, due_date, return_status, return_date, penalty, title, booktype 
+										FROM (	SELECT lending_id, lending.book_id as book_id, mem_id, lend_date, due_date, return_status, return_date, penalty, title, booktype 
 												FROM lending, book
 												WHERE lending.book_id = book.book_id) as lending_book
 										WHERE mem_id = ? and return_status = false;");
@@ -378,6 +431,7 @@
 		$result = mysqli_stmt_get_result($stmt);
 		while($row = mysqli_fetch_assoc($result)){
 			
+			$lending_list[$i]['lending_id'] = $row['lending_id'];
 			$lending_list[$i]['booktype'] = $row['booktype'];
 			$lending_list[$i]['title'] = $row['title'];
 			$lending_list[$i]['lend_date'] = $row['lend_date'];
@@ -395,6 +449,9 @@
 		}
 		return $lending_list;
 	}
+	
+	
+	
 	
 	function get_best_book(){
 		$conn = get_mysql_conn();
@@ -429,7 +486,7 @@
 		return $best_book;
 	}		
 				
-				
+	
 	
 	
 	

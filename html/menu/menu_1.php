@@ -56,10 +56,8 @@
 						printf("<tr>");
 						printf("<td><a href='../book/book_detail.php?book_id=%d'>%s</td></td>", $best_book[$i]['book_id'], $best_book[$i]['title']);
 						printf("<td>%s</td>", $best_book[$i]['author']);
-						
 						printf("<td>%s</td>", $best_book[$i]['publisher']);
 						printf("<td>%s</td>", $best_book[$i]['lang']);
-						
 						printf("<td>%d</td>", $best_book[$i]['fee']);
 						printf("<td>%s</td>", $best_book[$i]['age_limit']);
 						printf("<td>%s</td>", $best_book[$i]['genre']);

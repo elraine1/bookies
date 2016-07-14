@@ -50,8 +50,6 @@
 						$lend_list[] = $book;
 					}
 					
-					
-					
 					printf("<div id='lend_list'>");
 					printf("<h3>선택 목록</h3>");
 					printf("<form action='lending_process.php' method='POST'>");
