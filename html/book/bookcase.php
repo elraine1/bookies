@@ -68,19 +68,19 @@
 					$bookcase = get_bookcase($booktype, $page_start, $page_end);
 					printf("<form action='book_lending.php' method='post'>");
 					printf("<table>");
-					printf("<tr><th>번호</th><th>타입</th><th>장르</th><th width='500'>제목</th><th>연령제한</th><th>도서정가</th><th>대여료</th><th>출판사</th><th>대여상태</th></tr>");
+					printf("<tr><th>번호</th><th>장르</th><th width='500'>제목</th><th>연령제한</th><th>대여료</th><th>대여상태</th></tr>");
 					
 					for($i=0; $i<count($bookcase); $i++){
 						
 						printf("<tr>");
 						printf("<td><a href='book_detail.php?book_id=%d'>%d</a></td>", $bookcase[$i]['book_id'], $bookcase[$i]['book_id']);
 						printf("<td>%s</td>", $bookcase[$i]['booktype']);
-						printf("<td><a href='#'>%s</td></td>", $bookcase[$i]['genre']);
+				
 						printf("<td><a href='book_detail.php?book_id=%d'>%s</td></td>", $bookcase[$i]['book_id'], $bookcase[$i]['title']);
 						printf("<td>%s</td>", $bookcase[$i]['age_limit']);
-						printf("<td>%d</td>", $bookcase[$i]['price']);
+						
 						printf("<td>%d</td>", $bookcase[$i]['fee']);
-						printf("<td><a href='#'>%s</a></td>", $bookcase[$i]['publisher']);
+					
 						printf("<td>%s", $bookcase[$i]['status']);
 						
 						if(isset($_SESSION['login_status']) && ($_SESSION['login_status'] == true) 
