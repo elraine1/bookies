@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <html>
-<head>
-<link rel="stylesheet" type="text/css" href="/style/css/mystyle.css">
-</head>
+
+
 <body>
 <div class="content">
 <?php

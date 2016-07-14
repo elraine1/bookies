@@ -10,21 +10,21 @@
 }
 
 #div_loginbar{
-	margin-right:1%;
+	
 	text-align:right;
 	color : white;
-	height:35px;
-	background-color:;
+	height:30px;
+	background-color:black;
 	padding-top:5px;
 }
 
 #header{
 	text-align:center;
 	font-size : 35px;
-	
+
 	height:135px;
 	color : #BC602B;
-	background-color: #3E3E3E;
+	background-color:
 }
 
 #footer{
@@ -36,24 +36,27 @@
 
 .content_wrap{
 	height: 900px;
+	width: 85%;
+	background-color: ;
 	margin: 0 auto;
-
+	text-color :#BC602B; 
 }
 
 #menu{
 	height: 100%;
 	width: 8%;
 	float: left;
-	background-color: ;
-	margin: 5px 5px 5px 5px;
+	background-color:
+	margin:;
 	margin-left: 15%;
 }
 
 #content{
 	height: 100%;
-	width: 60%;
+	width: 70%;
+	background-color:#424242;
 	float:left;
-	background-color: #3E3E3E;
+	
 	color : #C6C6C6;
 	margin: 5px  auto;
 	margin-right: 5%;
@@ -61,7 +64,7 @@
 }
 
 #main{
-	height: 100%;
+	height: 80%;
 	width: 60%;
 	float:left;
 	background-image: url("../img/main.jpg");
@@ -70,6 +73,10 @@
 	margin-right: 5%;
 }
 h1{
+	text-align:center;
+	color : #C6C6C6;
+}
+h2{
 	text-align:center;
 	color : #C6C6C6;
 }
@@ -90,12 +97,14 @@ h4{
 
 li{
 	height:50px;
+	text-align:left;
 }
 
 a, a:link{
 	text-decoration: none;
-	color:black;
+	color:white;
 }
+
 
 
 #userinfo_div{
@@ -108,4 +117,7 @@ a, a:link{
 #member_table{
 	border: 1px dotted red;
 	border-collapse:collapse;
+}
+input{
+	button-align:right
 }

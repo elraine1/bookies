@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="/style/css/mystyle.css">
 
 </head>
-<style type="text/css">
+	<style type="text/css">
 		table{
 			margin-left: 25px;
 		}
@@ -48,7 +48,7 @@
 				printf("<div>");
 					printf("<h2> 베스트 </h2><br>");
 					printf("<table id='best_book'>");
-					printf("<tr><th>랭크</th><th>제목</th><th>작가</th><th>출판사</th><th>언어</th>
+					printf("<tr><th>랭크</th><th width='400'>제목</th><th>작가</th><th>출판사</th><th>언어</th>
 							<th>대여료</th><th>연령제한</th><th>장르</th><th>책종류</th><th>총대여횟수</th></tr>");
 					
 					
