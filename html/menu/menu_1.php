@@ -48,12 +48,13 @@
 				printf("<div>");
 					printf("<h2> 베스트 </h2><br>");
 					printf("<table id='best_book'>");
-					printf("<tr><th>제목</th><th>작가</th><th>출판사</th><th>언어</th>
+					printf("<tr><th>랭크</th><th>제목</th><th>작가</th><th>출판사</th><th>언어</th>
 							<th>대여료</th><th>연령제한</th><th>장르</th><th>책종류</th><th>총대여횟수</th></tr>");
 					
 					
 					for($i=0; $i<count($best_book); $i++){
 						printf("<tr>");
+						printf("<td>%d</td>", $i+1);
 						printf("<td><a href='../book/book_detail.php?book_id=%d'>%s</td></td>", $best_book[$i]['book_id'], $best_book[$i]['title']);
 						printf("<td>%s</td>", $best_book[$i]['author']);
 						printf("<td>%s</td>", $best_book[$i]['publisher']);

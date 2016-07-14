@@ -60,8 +60,8 @@
 						printf("</td></tr>");
 					}else if(isset($_SESSION['login_status']) && ($_SESSION['login_status'] == true)){
 						printf("<tr><td colspan='2' align='center'>");
-						printf("<a href='#'><button>대여하기</button></a>");
-						printf("<a href='#'><button>취소</button></a>");
+						printf("<a href='lending_process.php?book_id=%d'><button>대여하기</button></a>", $book_id);
+						//printf("<a href='#'><button>취소</button></a>");
 						printf("</td></tr>");
 					}
 					
