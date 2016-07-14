@@ -22,9 +22,9 @@
 			require_once($DOCUMENT_ROOT . "/template/menu.php");
 		?>		
 		
-			<div id="content">
-				<h2> ◆ BOOKIES NEWS ◆</h2><br>
-				여기다 뭐 넣을까.
+			<div id="main">
+			
+			
 				
 			</div>
 			

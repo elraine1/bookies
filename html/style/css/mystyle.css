@@ -24,7 +24,7 @@
 	
 	height:135px;
 	color : #BC602B;
-	background-color: #3E3E3E;	
+	background-color: #3E3E3E;
 }
 
 #footer{
@@ -52,15 +52,25 @@
 	height: 100%;
 	width: 60%;
 	float:left;
-	background-color: #B4B4B4;
+	background-color: #3E3E3E;
+	color : #C6C6C6;
 	margin: 5px  auto;
 	margin-right: 5%;
 	
 }
 
+#main{
+	height: 100%;
+	width: 60%;
+	float:left;
+	background-image: url("../img/main.jpg");
+	background-size: cover;
+	margin: 5px  auto;
+	margin-right: 5%;
+}
 h1{
 	text-align:center;
-	color : #C6C6C6;	
+	color : #C6C6C6;
 }
 h4{
 	color : #C6C6C6;

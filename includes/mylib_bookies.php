@@ -385,7 +385,41 @@
 		
 		return $lending_list;
 	}
+
+	function get_best_book(){
+		$conn = get_mysql_conn();
+		$stmt = mysqli_prepare($conn, "SELECT * FROM book ORDER BY lending_count DESC LIMIT 15");
 	
+		mysqli_stmt_execute($stmt);
+		
+		$result = mysqli_stmt_get_result($stmt);
+		$i=0;
+		
+		while($book = mysqli_fetch_assoc($result)){
+			$best_book[$i]['book_id'] = $book['book_id'];
+			$best_book[$i]['title'] = $book['title'];
+			$best_book[$i]['author'] = $book['author'];
+			$best_book[$i]['published_date'] = $book['published_date'];
+			$best_book[$i]['publisher'] = $book['publisher'];
+			$best_book[$i]['lang'] = $book['lang'];
+			$best_book[$i]['price'] = $book['price'];
+			$best_book[$i]['fee'] = $book['fee'];
+			$best_book[$i]['age_limit'] = $book['age_limit'];
+			$best_book[$i]['genre'] = $book['genre'];
+			$best_book[$i]['booktype'] = $book['booktype'];
+			$best_book[$i]['status'] = $book['status'];
+			$best_book[$i]['update_date'] = $book['update_date'];
+			$best_book[$i]['lending_count'] = $book['lending_count'];
+			
+	
+			$i++;
+		}
+		mysqli_free_result($result);
+		mysqli_close($conn);
+		return $best_book;
+	}		
+				
+				
 	
 	
 	
