@@ -6,6 +6,44 @@
 	<title>Hello, Bookies!</title>
 	<link rel="stylesheet" type="text/css" href="/style/css/mystyle.css">
 
+	<style type="text/css">
+	table, tr, th, td{
+		border: 1px dashed MidnightBlue;
+		border-collapse: collapse;
+	}
+	th{
+		background-color: blue;
+	}
+	div{
+		text-align: center;
+	}
+	</style>
+	
+	<script>
+	
+	function select_all(){
+		
+		var returnList = document.getElementsByName('return_list');
+		var checkSum = 0;		
+		var check = true;
+		
+		var i = 0;
+		for(i = 0; i < returnList.length; i++){
+			checkSum += returnList[i].checked; 
+		}
+		
+		if(checkSum == i){
+			check = false;
+		}
+		
+		for(i = 0; i < returnList.length; i++){
+			returnList[i].checked = check; 
+		}
+	}
+	
+	
+	</script>
+	
 </head>
 
 <body>  
@@ -27,28 +65,43 @@
 			<div id="content">
 				
 				<?php
-					$username = $_SESSION['username'];
-					printf("<h> 대여 현황(대여 정보) </h2><br>");
-					printf("<b>%s </b>님께서 대여중인 목록은 다음과 같습니다. ", $username);
-				
+					if(isset($_SESSION['login_status']) && ($_SESSION['login_status']==true)){
 					
-					$lending_list = get_my_lending_list($username);
-					printf("<table>");
-					printf("<tr><th>번호</th><th>도서명</th><th>대여일시</th><th>반납예정일</th><th>연체일</th></tr>");
+						$username = $_SESSION['username'];
+						
+						printf("<div>");
+						printf("<h3> 대여 현황(대여 정보) </h3><br>");
+						printf("<b>%s </b>님께서 대여 중인 도서는 다음과 같습니다. <br><br>", $username);
 					
-					for($i=0; $i<count($lending_list); $i++){
-						printf("<tr>");
-						printf("<td>%d</td>", $i+1);
-						printf("<td>%s</td>", $lending_list[$i]['title']);
-						printf("<td>%s</td>", $lending_list[$i]['lend_date']);
-						printf("<td>%s</td>", $lending_list[$i]['due_date']);
-						printf("<td>%s</td>", $lending_list[$i]['delay']);
-						printf("</tr>");
+						
+						$lending_list = get_my_lending_list($username);
+						printf("<form action='#' method='POST'> ");
+						printf("<table>");
+						printf("<tr><th>번호</th><th>종류</th><th width='300'>도서명</th><th>대여일시</th><th>반납예정일</th><th>연체일</th><th>선택</th></tr>");
+						
+						for($i=0; $i<count($lending_list); $i++){
+							printf("<tr>");
+							printf("<td>%d</td>", $i+1);
+							printf("<td>%s</td>", $lending_list[$i]['booktype']);
+							printf("<td>%s</td>", $lending_list[$i]['title']);
+							printf("<td>%s</td>", $lending_list[$i]['lend_date']);
+							printf("<td>%s</td>", $lending_list[$i]['due_date']);
+							printf("<td>%s</td>", $lending_list[$i]['delay']);
+							printf("<td><input type='checkbox' name='return_list' ></td>");
+							printf("</tr>");
+						}
+						printf("<tr><td colspan='7' align='center'><input type='button' value='전체 선택' onclick='select_all()'><input type='submit' value='선택도서 반납'></td></tr>");
+						printf("</table><br><br>");
+						printf("</form>");
+					
+						printf("<br>항상 이용해주셔서 감사합니다.<br>");
+						printf("</div>");
+						
+					} else{
+						
+						printf("<b>로그인 후 이용하실 수 있습니다.</b><br>");
+						printf("<a href='../index.php'>메인으로</a>");
 					}
-				
-					printf("</table><br><br>");
-				
-					printf("이용해주셔서 감사합니다.");
 				
 				?>
 				
