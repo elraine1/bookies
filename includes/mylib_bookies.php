@@ -366,7 +366,11 @@
 		$mem_id = $userinfo['mem_id'];
 		
 		$conn = get_mysql_conn();
-		$stmt = mysqli_prepare($conn, "SELECT * FROM lending WHERE mem_id = ? and return_status = false;");
+		$stmt = mysqli_prepare($conn, "	SELECT * 
+										FROM (	SELECT lending.book_id as book_id, mem_id, lend_date, due_date, return_status, return_date, penalty, title, booktype 
+												FROM lending, book
+												WHERE lending.book_id = book.book_id) as lending_book
+										WHERE mem_id = ? and return_status = false;");
 		mysqli_stmt_bind_param($stmt, "s", $mem_id);
 		mysqli_stmt_execute($stmt);
 		
@@ -374,18 +378,24 @@
 		$result = mysqli_stmt_get_result($stmt);
 		while($row = mysqli_fetch_assoc($result)){
 			
-			$lending_list[$i]['title'] = $row['book_id'];
+			$lending_list[$i]['booktype'] = $row['booktype'];
+			$lending_list[$i]['title'] = $row['title'];
 			$lending_list[$i]['lend_date'] = $row['lend_date'];
 			$lending_list[$i]['due_date'] = $row['due_date'];
-			$lending_list[$i]['delay'] = 0;
 			
+			if($row['return_status'] == false){
+				$lending_list[$i]['reutrn_status'] = "대여중";
+			}else{
+				$lending_list[$i]['reutrn_status'] = "반납 완료";
+				$lending_list[$i]['reutrn_date'] = $row['reutrn_date'];
+			}
+			
+			$lending_list[$i]['delay'] = 0;
 			$i++;
 		}
-		
-		
 		return $lending_list;
 	}
-
+	
 	function get_best_book(){
 		$conn = get_mysql_conn();
 		$stmt = mysqli_prepare($conn, "SELECT * FROM book ORDER BY lending_count DESC LIMIT 15");
