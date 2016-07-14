@@ -359,6 +359,32 @@
 		mysqli_close($conn);
 	}
 	
+	function get_my_lending_list($username){
+		
+		$lending_list = array();
+		$userinfo = get_user_info($username);
+		$mem_id = $userinfo['mem_id'];
+		
+		$conn = get_mysql_conn();
+		$stmt = mysqli_prepare($conn, "SELECT * FROM lending WHERE mem_id = ? and return_status = false;");
+		mysqli_stmt_bind_param($stmt, "s", $mem_id);
+		mysqli_stmt_execute($stmt);
+		
+		$i = 0 ;
+		$result = mysqli_stmt_get_result($stmt);
+		while($row = mysqli_fetch_assoc($result)){
+			
+			$lending_list[$i]['title'] = $row['book_id'];
+			$lending_list[$i]['lend_date'] = $row['lend_date'];
+			$lending_list[$i]['due_date'] = $row['due_date'];
+			$lending_list[$i]['delay'] = 0;
+			
+			$i++;
+		}
+		
+		
+		return $lending_list;
+	}
 	
 	
 	

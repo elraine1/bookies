@@ -16,13 +16,13 @@
 			
 			printf("<script>");
 			printf("	alert('대여 완료');");
-			printf("	window.location = '../index.php'");
-			printf("</script>)";
+			printf("	window.location = '../index.php';");			//// 에러~!!!!! 
+			printf("</script>");
 		}
 	}else {
 		printf("<script>");
 		printf("	alert('로그인 후 이용해주세요.');");
 		printf("	window.location = '../index.php'");
-		printf("</script>)";
+		printf("</script>");
 	}
 ?>

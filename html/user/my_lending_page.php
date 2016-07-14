@@ -27,10 +27,12 @@
 			<div id="content">
 				
 				<?php
+					$username = $_SESSION['username'];
 					printf("<h> 대여 현황(대여 정보) </h2><br>");
-					printf("<b>%s </b>님께서 대여중인 목록은 다음과 같습니다. ", $_SESSION['username']);
+					printf("<b>%s </b>님께서 대여중인 목록은 다음과 같습니다. ", $username);
 				
-					$lending_list = "";
+					
+					$lending_list = get_my_lending_list($username);
 					printf("<table>");
 					printf("<tr><th>번호</th><th>도서명</th><th>대여일시</th><th>반납예정일</th><th>연체일</th></tr>");
 					
