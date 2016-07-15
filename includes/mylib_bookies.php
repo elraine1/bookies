@@ -66,6 +66,7 @@
 		return $member_list;
 	}
 	
+	// 신간 
 	function get_new_book(){
 		$conn = get_mysql_conn();
 		$stmt = mysqli_prepare($conn, "SELECT * FROM book WHERE  date(update_date) >= date(subdate(now(), INTERVAL 7 DAY)) and date(update_date) <= date(now()) ORDER BY update_date DESC LIMIT 30");
@@ -88,7 +89,15 @@
 			$new_book[$i]['genre'] = $book['genre'];
 			$new_book[$i]['booktype'] = $book['booktype'];
 			$new_book[$i]['status'] = $book['status'];
-			$new_book[$i]['update_date'] = $book['update_date'];
+			
+			$date = date_create($book['update_date']);
+			$new_book[$i]['update_date'] = date_format($date, 'Y-m-d');
+			
+			if($book['status'] == true){
+				$new_book[$i]['status'] = "대여 가능";
+			}else{
+				$new_book[$i]['status'] = "대여 불가";
+			}
 	
 			$i++;
 		}
@@ -426,7 +435,9 @@
 			$lending_list[$i]['lending_id'] = $row['lending_id'];
 			$lending_list[$i]['booktype'] = $row['booktype'];
 			$lending_list[$i]['title'] = $row['title'];
-			$lending_list[$i]['lend_date'] = $row['lend_date'];
+			
+			$date = date_create($row['lend_date']);
+			$lending_list[$i]['lend_date'] = date_format($date, 'Y-m-d h:m');
 			$lending_list[$i]['due_date'] = $row['due_date'];
 			
 			if($row['return_status'] == false){
