@@ -90,7 +90,7 @@
 			$new_book[$i]['booktype'] = $book['booktype'];
 			$new_book[$i]['status'] = $book['status'];
 			
-			$date = new DateTime($book['update_date']);
+			$date = date_create($book['update_date']);
 			$new_book[$i]['update_date'] = date_format($date, 'Y-m-d');
 			
 			if($book['status'] == true){
@@ -436,7 +436,7 @@
 			$lending_list[$i]['booktype'] = $row['booktype'];
 			$lending_list[$i]['title'] = $row['title'];
 			
-			$date = new DateTime($row['lend_date']);
+			$date = date_create($row['lend_date']);
 			$lending_list[$i]['lend_date'] = date_format($date, 'Y-m-d h:m');
 			$lending_list[$i]['due_date'] = $row['due_date'];
 			
