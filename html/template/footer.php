@@ -1,18 +1,4 @@
 <html>
-<style type="text/css">
-		table{
-			margin-left: 25px;
-		}
-		table, tr, th, td{
-			border: 1px solid red;
-			border-collapse: collapse;
-			text-align:center;
-		}
-		th{
-			background-color: salmon;
-		}
-	
-	</style>
 
 <div id="footer">
 	<h3>BOOKIES란,'book'과'cookies'의 합성어입니다!</h3>
