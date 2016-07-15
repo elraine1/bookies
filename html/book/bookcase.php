@@ -79,15 +79,14 @@
 						printf("<td>%s</td>", $bookcase[$i]['age_limit']);
 						printf("<td>%d</td>", $bookcase[$i]['fee']);
 						printf("<td>%s", $bookcase[$i]['status']);
-						
 						if(isset($_SESSION['login_status']) && ($_SESSION['login_status'] == true) 
 							&& ($_SESSION['admin_mode'] == false) && $bookcase[$i]['status'] == "대여 가능"){
 							
-							printf("<input type='checkbox' name='lending[]' value='%d'></td>",$bookcase[$i]['book_id']);
+							printf("<input type='checkbox' name='lending[]' value='%d'>",$bookcase[$i]['book_id']);
 							
-						}else {
-							printf("</td>");
 						}
+						printf("</td>");
+						
 						printf("</tr>");
 					}
 					

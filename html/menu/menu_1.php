@@ -46,10 +46,11 @@
 					$best_book = get_best_book();
 					
 				printf("<div>");
+					printf("<form action='../book/book_lending.php' method='post'>");
 					printf("<h2> 베스트 </h2><br>");
 					printf("<table id='best_book'>");
 					printf("<tr><th>랭크</th><th width='400'>제목</th><th>작가</th><th>출판사</th><th>언어</th>
-							<th>대여료</th><th>연령제한</th><th>장르</th><th>책종류</th><th>총대여횟수</th></tr>");
+							<th>대여료</th><th>연령제한</th><th>장르</th><th>책종류</th><th>총대여횟수</th><th>대여 상태</th></tr>");
 					
 					
 					for($i=0; $i<count($best_book); $i++){
@@ -64,11 +65,23 @@
 						printf("<td>%s</td>", $best_book[$i]['genre']);
 						printf("<td>%s</td>", $best_book[$i]['booktype']);
 						printf("<td>%s</td>", $best_book[$i]['lending_count']);
+						printf("<td>%s", $best_book[$i]['status']);
 						
+						if(isset($_SESSION['login_status']) && ($_SESSION['login_status'] == true) 
+							&& ($_SESSION['admin_mode'] == false) && $best_book[$i]['status'] == "대여 가능"){
+							printf("<input type='checkbox' name='lending[]' value='%d'>",$best_book[$i]['book_id']);
+						}
+						printf("</td>");
 						printf("</tr>");
 					}
 					
 					printf("</table>");
+										
+					if(isset($_SESSION['login_status']) && ($_SESSION['login_status'] == true) 
+						&& $_SESSION['admin_mode'] == false){
+						printf("<input id='lend_btn' type='submit' value='선택도서대여'>");
+					}
+					printf("</form>");
 					printf("</div>");
 					
 		

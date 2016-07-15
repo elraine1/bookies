@@ -466,11 +466,15 @@
 			$best_book[$i]['age_limit'] = $book['age_limit'];
 			$best_book[$i]['genre'] = $book['genre'];
 			$best_book[$i]['booktype'] = $book['booktype'];
-			$best_book[$i]['status'] = $book['status'];
 			$best_book[$i]['update_date'] = $book['update_date'];
 			$best_book[$i]['lending_count'] = $book['lending_count'];
 			
-	
+			if($book['status'] == 1){
+				$best_book[$i]['status'] = "대여 가능";
+			}else{
+				$best_book[$i]['status'] = "대여 중";
+			}
+			
 			$i++;
 		}
 		mysqli_free_result($result);

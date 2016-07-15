@@ -72,6 +72,7 @@
 					}
 					
 					printf("</table>");
+					
 					printf("</div>");
 				}
 		
