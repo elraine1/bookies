@@ -15,18 +15,18 @@
 		printf("<span><b>%s</b> 님 환영합니다. </span>", $_SESSION['name']);
 		printf("<input type='submit' value='내정보보기'>");	
 		printf("</form>");
-		printf("<a href='../login/logout.php'><button id='logout_btn'>로그아웃</button></a>");
+		printf("<a href='../login/logout.php'>&nbsp<button class='loginbar_btn'>로그아웃</button></a>");
 		echo "</tr>";
 		
 		}else {
 	?>
-		<form action="../login/login.php" method="post">
+		<form action="../login/login.php" method="post" id='login_form'>
 			<b>ID: </b><input type="text" name="username"> 
 			<b>PW: </b><input type="password" name="password"> 
 	
-			<input type="submit" value="로그인"> 
+			<input type="submit"  value="로그인" > 
 		</form>
-		<a href="../login/register_page.php"><button>회원가입</button></a>	
+		<a href="../login/register_page.php"><button class="loginbar_btn">회원가입</button></a>	
 	</div>
 
 <?php 

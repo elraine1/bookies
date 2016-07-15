@@ -122,10 +122,10 @@ input{
 	button-align:right
 }
 
-#logout_btn{
+#login_form{
 	display: inline-block;
 }
-#login_form{
+.loginbar_btn{
 	display: inline-block;
 }
 
