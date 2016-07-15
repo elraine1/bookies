@@ -121,6 +121,7 @@
 		mysqli_close($conn);
 	}
 	
+	// 도서정보 수정
 	function modify_book($book){
 		
 		$conn = get_mysql_conn();
@@ -133,6 +134,8 @@
 		echo "성공적으로 수정되었습니다. <br>";
 		mysqli_close($conn);
 	}
+	
+	// 도서 삭제
 	function delete_book($book_id){
 		$conn = get_mysql_conn();		
 		$delete_query = sprintf("DELETE FROM book WHERE book_id=%d", $book_id);
@@ -144,6 +147,7 @@
 		mysqli_close($conn);
 	}
 
+	// 도서 페이지
 	function get_bookcase($booktype, $start, $end){
 
 		$conn = get_mysql_conn();
@@ -184,6 +188,7 @@
 		return $bookcase;
 	}
 	
+	// 도서 종류별 총 권수
 	function get_total_book($booktype){
 		
 		$conn = get_mysql_conn();
@@ -199,7 +204,7 @@
 		return $count;
 	}
 	
-	
+	// 도서 정보
 	function get_book_info($book_id){
 		
 		$conn = get_mysql_conn();
@@ -221,6 +226,12 @@
 		$book['age_limit'] = $row['age_limit'];
 		$book['genre'] = $row['genre'];
 		$book['booktype'] = $row['booktype'];
+		
+		if($row['status'] == true){
+			$book['status'] = "대여 가능";
+		}else {
+			$book['status'] = "대여 중";
+		}
 		
 		return $book;;
 	}
@@ -372,6 +383,25 @@
 		return $book_id;
 	}
 	
+	// 현재 대여중인 도서의 대여일, 반납 예정일 반환해주는 함수.
+	function get_lend_date_info($book_id){
+		$conn = get_mysql_conn();
+		$stmt = mysqli_prepare($conn, "SELECT lend_date, due_date FROM lending WHERE return_date is null and book_id = ?");
+		mysqli_stmt_bind_param($stmt, "s", $book_id);
+		mysqli_stmt_execute($stmt);
+		
+		$result = mysqli_stmt_get_result($stmt);
+		$row = mysqli_fetch_assoc($result);
+		
+		$lend_info = array();
+		$lend_info['book_id'] = $book_id;
+		$lend_info['lend_date'] = $row['lend_date'];
+		$lend_info['due_date'] = $row['due_date'];
+		
+		return $lend_info;
+	}
+	
+	
 	// 내 대여 현황 (리스트 반환)
 	function get_my_lending_list($username){
 		
@@ -414,7 +444,7 @@
 	
 	
 	
-	
+	// 베스트 
 	function get_best_book(){
 		$conn = get_mysql_conn();
 		$stmt = mysqli_prepare($conn, "SELECT * FROM book ORDER BY lending_count DESC LIMIT 15");

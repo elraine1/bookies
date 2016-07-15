@@ -26,13 +26,13 @@
 					printf("<div id='userinfo_div'>");
 					printf("<h2> ◆ 내 정보 ◆</h2><hr>");
 					printf("<table id='userinfo_table'>");
-					printf("<tr><th><b>아이디 :</b></th><td>%s</td></tr>",$userinfo['username']);
-					printf("<tr><th><b>이름 :</b></th><td>%s</td></tr>",$userinfo['name']);
-					printf("<tr><th><b>나이 :</b></th><td>%d</td></tr>",$userinfo['age']);
-					printf("<tr><th><b>성별 :</b></th><td>%s</td></tr>",$userinfo['gender']);
-					printf("<tr><th><b>주소 :</b></th><td>%s</td></tr>",$userinfo['address']);
-					printf("<tr><th><b>이메일 :</b></th><td>%s</td></tr>",$userinfo['email']);
-					printf("<tr><th><b>연락처 :</b></th><td>%s</td></tr>",$userinfo['phone']);
+					printf("<tr><th><b>아이디</b></th><td>%s</td></tr>",$userinfo['username']);
+					printf("<tr><th><b>이름</b></th><td>%s</td></tr>",$userinfo['name']);
+					printf("<tr><th><b>나이</b></th><td>%d</td></tr>",$userinfo['age']);
+					printf("<tr><th><b>성별</b></th><td>%s</td></tr>",$userinfo['gender']);
+					printf("<tr><th><b>주소</b></th><td>%s</td></tr>",$userinfo['address']);
+					printf("<tr><th><b>이메일</b></th><td>%s</td></tr>",$userinfo['email']);
+					printf("<tr><th><b>연락처</b></th><td>%s</td></tr>",$userinfo['phone']);
 					printf("</table><hr>");
 					
 					printf("<a href='modify_profile.php?username=%s'><button>수정하기</button></a>",$username);

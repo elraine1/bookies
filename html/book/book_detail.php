@@ -51,6 +51,7 @@
 					printf("<tr><th>종류</th><td>%s</td></tr>", $book['booktype']);
 					printf("<tr><th>출판사</th><td>%s</td></tr>", $book['publisher']);
 					printf("<tr><th>출판일</th><td>%s</td></tr>", $book['published_date']);
+					printf("<tr><th>대여상태</th><td>%s</td></tr>", $book['status']);
 					
 					// 관리자 계정으로 접속한 경우에만 도서 수정/삭제 가능.
 					if(isset($_SESSION['admin_mode']) && ($_SESSION['admin_mode'] == true)){
@@ -59,10 +60,18 @@
 						printf("<a href='book_delete.php?book_id=%d'><button>삭제</button></a>",$book_id);
 						printf("</td></tr>");
 					}else if(isset($_SESSION['login_status']) && ($_SESSION['login_status'] == true)){
-						printf("<tr><td colspan='2' align='center'>");
-						printf("<a href='lending_process.php?book_id=%d'><button>대여하기</button></a>", $book_id);
+						
+						if($book['status'] == "대여 가능"){
+							printf("<tr><td colspan='2' align='center'><a href='lending_process.php?book_id=%d'><button>대여 신청</button></a></td></tr>", $book_id);
+						}else{
+							$lend_info = get_lend_date_info($book_id);
+							
+							printf("<tr><th>대여일시</th><td>%s</td></tr>", $lend_info['lend_date']);
+							printf("<tr><th>반납예정일</th><td>%s</td></tr>", $lend_info['due_date']);
+							printf("<tr><td colspan='2' align='center'><button disabled>대여 신청</button></td></tr>");
+						}
 						//printf("<a href='#'><button>취소</button></a>");
-						printf("</td></tr>");
+						printf("");
 					}
 					
 					printf("</table>");
