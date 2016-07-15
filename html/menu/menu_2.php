@@ -11,14 +11,23 @@
 
 		}
 		table, tr, th, td{
-			border: 1px solid #C6C6C6;;
+			
 			border-collapse: collapse;
 			text-align:center;
 		}
 		th{
-			background-color: #C6C6C6;
+			background-color: #323232;
+			color : white;
 		}
-	
+		th, td {
+			border-right: 3px solid #323232;
+		}
+		th:last-child, td:last-child {
+			border-right: 0;
+		}
+		tr:last-child {
+			border-bottom : 3px solid #323232;
+		}
 	</style>
 </head>
 

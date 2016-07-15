@@ -11,14 +11,23 @@
 			margin-left: 25px;
 		}
 		table, tr, th, td{
-			border: 1px solid red;
+			border: 4px;;
 			border-collapse: collapse;
 			text-align:center;
 		}
 		th{
-			background-color: salmon;
+			background-color: #323232;
+			color : white;
 		}
-	
+		th, td {
+			border-right: 3px solid #323232;
+		}
+		th:last-child, td:last-child {
+			border-right: 0;
+		}
+		tr:last-child {
+			border-bottom : 3px solid #323232;
+		}
 	</style>
 
 </head>
